@@ -14,7 +14,7 @@ app.use(cors())
 app.use(express.json())
 
 // Default
-app.get("/",(req,res)=>res.send(`<h1>Server is working. click <a href="https://match-finder-frontend.vercel.app/">here</a> to visit frontend</h1>`))
+app.get("/",(req,res)=>res.send(`<h1>Server is working. click <a href=${process.env.FRONTEND_URL}>here</a> to visit frontend</h1>`))
 
 // Sign up to the Database
 app.post('/signup', async (req, res) => {
