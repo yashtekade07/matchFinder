@@ -99,7 +99,7 @@ app.get('/user', async (req, res) => {
 
         const query = {user_id: userId}
         const user = await users.findOne(query)
-        res.send(user)
+        return res.send(user)
 
     } finally {
         await client.close()
@@ -204,7 +204,7 @@ app.put('/user', async (req, res) => {
 
         const insertedUser = await users.updateOne(query, updateDocument)
 
-        res.json(insertedUser)
+        return res.json(insertedUser)
 
     } finally {
         await client.close()
@@ -225,7 +225,7 @@ app.get('/messages', async (req, res) => {
             from_userId: userId, to_userId: correspondingUserId
         }
         const foundMessages = await messages.find(query).toArray()
-        res.send(foundMessages)
+        return res.send(foundMessages)
     } finally {
         await client.close()
     }
@@ -242,7 +242,7 @@ app.post('/message', async (req, res) => {
         const messages = database.collection('messages')
 
         const insertedMessage = await messages.insertOne(message)
-        res.send(insertedMessage)
+        return res.send(insertedMessage)
     } finally {
         await client.close()
     }
